@@ -106,9 +106,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 4
-  Gravity: 0.4
+  Gravity: 0.15
   ModelRotationSpeed: 540
-  JumpStrength: 0.1
+  JumpStrength: 0.05
 --- !u!114 &4655877285482862954
 MonoBehaviour:
   m_ObjectHideFlags: 0

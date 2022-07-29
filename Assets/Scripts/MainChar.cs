@@ -22,6 +22,8 @@ public class MainChar : MonoBehaviour
 
     Transform Model;
 
+    Vector3 LastSafePosition;
+
     void Start()
     {
         Model = transform.Find("Model");
@@ -46,9 +48,13 @@ public class MainChar : MonoBehaviour
             {
                 // Animator.SetBool("Grounded", true);
             }
+
+            LastSafePosition = transform.position;
         }
         else
             VerticalVelocity -= Time.deltaTime * Gravity;
+
+        print(LastSafePosition);
 
         if (MoveInput.x == 1)
             Model.rotation = Quaternion.RotateTowards(Model.rotation, Quaternion.Euler(90, 0, -95), Time.deltaTime * ModelRotationSpeed);
@@ -104,7 +110,7 @@ public class MainChar : MonoBehaviour
 
     bool Invulnerable;
 
-    void ApplyDamage()
+    public void ApplyDamage(bool _returnToLastSafePos = false)
     {
         if (Invulnerable)
             return;
@@ -113,6 +119,9 @@ public class MainChar : MonoBehaviour
         if (BlinkRoutine != null)
             StopCoroutine(BlinkRoutine);
         BlinkRoutine = StartCoroutine(DamageBlink());
+
+        if (_returnToLastSafePos)
+            transform.position = LastSafePosition;
 
         // HACK TODO volver al ultimo checkpoint o algo
         if (CurrentHP <= 0)
