@@ -16,6 +16,7 @@ public class MainChar : MonoBehaviour
     bool JumpPressed;
 
     Vector3 MoveInput;
+    bool DownPressed;
     Vector3 ControlMovement;
     float VerticalVelocity;
 
@@ -54,15 +55,44 @@ public class MainChar : MonoBehaviour
         if (MoveInput.x == -1)
             Model.rotation = Quaternion.RotateTowards(Model.rotation, Quaternion.Euler(90, 0, 95), Time.deltaTime * ModelRotationSpeed);
 
+        if(MoveInput.x == 0 && DownPressed)
+        {
+            foreach (var cosa in FindObjectsOfType<Ilusion>())
+                cosa.ShowReal();
+        }
+        if(MoveInput.x != 0)
+        {
+            foreach (var cosa in FindObjectsOfType<Ilusion>())
+                cosa.ShowIlusion();
+        }
+
+        // ========================================
+        // TECLAS DE DEBUG
+
         Keyboard keyboard = Keyboard.current;
         if (keyboard.zKey.wasPressedThisFrame)
             ApplyDamage();
+        if(keyboard.digit1Key.wasPressedThisFrame)
+        {
+            foreach (var cosa in FindObjectsOfType<Ilusion>())
+                cosa.ShowReal();
+        }
+        if(keyboard.digit2Key.wasPressedThisFrame)
+        {
+            foreach (var cosa in FindObjectsOfType<Ilusion>())
+                cosa.ShowIlusion();
+        }
+
+        if (keyboard.rKey.wasPressedThisFrame)
+            SceneManager.LoadScene(0);
     }
 
     void OnMove(InputValue value)
     {
         Vector2 raw = value.Get<Vector2>();
         MoveInput = new Vector3(raw.x, 0, 0).normalized;
+
+        DownPressed = raw.y < 0;
     }
 
     void OnJump(InputValue _value)
