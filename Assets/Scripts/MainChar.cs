@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class MainChar : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class MainChar : MonoBehaviour
     [SerializeField] float Gravity = 20;
     [SerializeField] float ModelRotationSpeed = 360;
     [SerializeField] float JumpStrength = 1;
+
+    int CurrentHP = 3;
 
     bool JumpPressed;
 
@@ -27,13 +30,12 @@ public class MainChar : MonoBehaviour
     {
         ControlMovement = Vector3.right * MoveInput.x * Time.deltaTime * MovementSpeed;
         GetComponent<CharacterController>().Move(ControlMovement + new Vector3(0, VerticalVelocity, 0));
-;
+
         if (GetComponent<CharacterController>().isGrounded)
         {
             VerticalVelocity = -0.1f;
             if (JumpPressed)
             {
-                Debug.Log("JUMPPP");
                 // Animator.SetTrigger("Jump");
                 // Animator.SetBool("Grounded", false);
                 VerticalVelocity = JumpStrength;
@@ -51,6 +53,10 @@ public class MainChar : MonoBehaviour
             Model.rotation = Quaternion.RotateTowards(Model.rotation, Quaternion.Euler(90, 0, -95), Time.deltaTime * ModelRotationSpeed);
         if (MoveInput.x == -1)
             Model.rotation = Quaternion.RotateTowards(Model.rotation, Quaternion.Euler(90, 0, 95), Time.deltaTime * ModelRotationSpeed);
+
+        Keyboard keyboard = Keyboard.current;
+        if (keyboard.zKey.wasPressedThisFrame)
+            ApplyDamage();
     }
 
     void OnMove(InputValue value)
@@ -61,7 +67,41 @@ public class MainChar : MonoBehaviour
 
     void OnJump(InputValue _value)
     {
-                Debug.Log("?=??");
         JumpPressed = true;
+    }
+
+    Coroutine BlinkRoutine;
+
+    bool Invulnerable;
+
+    void ApplyDamage()
+    {
+        if (Invulnerable)
+            return;
+
+        CurrentHP--;
+        if (BlinkRoutine != null)
+            StopCoroutine(BlinkRoutine);
+        BlinkRoutine = StartCoroutine(DamageBlink());
+
+        // HACK TODO volver al ultimo checkpoint o algo
+        if (CurrentHP <= 0)
+            SceneManager.LoadScene(0);
+    }
+
+    IEnumerator DamageBlink()
+    {
+        Invulnerable = true;
+        for (int i = 0; i < 10; i++)
+        {
+            Model.gameObject.SetActive(false);
+
+            yield return new WaitForSeconds(0.05f);
+
+            Model.gameObject.SetActive(true);
+
+            yield return new WaitForSeconds(0.05f);
+        }
+        Invulnerable = false;
     }
 }
