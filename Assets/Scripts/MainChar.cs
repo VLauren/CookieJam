@@ -44,7 +44,7 @@ public class MainChar : MonoBehaviour
     {
         Model = transform.Find("Model");
         Animator = Model.GetComponent<Animator>();
-        //UpdateDamageRenderers();
+        UpdateDamageRenderers();
     }
 
     void Update()
@@ -119,6 +119,8 @@ public class MainChar : MonoBehaviour
     {
         CurrentHP = Mathf.Clamp(CurrentHP + amount, 0, MaxHP);
         Debug.Log("Mi vida ahora es: " + CurrentHP);
+
+        UpdateDamageRenderers();
     }
 
     public void ApplyDamage(bool _returnToLastSafePos = false, bool _ignoreInvul = false)
@@ -126,7 +128,7 @@ public class MainChar : MonoBehaviour
         if (Invulnerable && !_ignoreInvul)
             return;
 
-        CurrentHP = Mathf.Clamp(CurrentHP--, 0, MaxHP);
+        CurrentHP = Mathf.Clamp(CurrentHP - 1, 0, MaxHP);
         Debug.Log("Mi vida ahora es: " + CurrentHP);
         if (BlinkRoutine != null)
             StopCoroutine(BlinkRoutine);
@@ -135,8 +137,8 @@ public class MainChar : MonoBehaviour
         if (_returnToLastSafePos)
             MoveToLastSafePosition();
 
-        // TODO quitar trozo de galleta
-        //UpdateDamageRenderers();
+        // Quitar trozo de galleta
+        UpdateDamageRenderers();
 
         if (CurrentHP <= 0)
             Death();
@@ -181,6 +183,7 @@ public class MainChar : MonoBehaviour
         FaceB.enabled = false;
         FaceC.enabled = false;
 
+        Debug.Log("Update " + CurrentHP);
         if(CurrentHP == 3)
         {
             BodyA.enabled = true;

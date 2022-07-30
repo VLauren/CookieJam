@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3561371631913265999}
   - component: {fileID: 4655877285482862955}
   - component: {fileID: 1029054371876149300}
-  - component: {fileID: 2409151022462015573}
   m_Layer: 0
   m_Name: MainChar
   m_TagString: Untagged
@@ -154,12 +153,14 @@ MonoBehaviour:
   Gravity: 0.08
   ModelRotationSpeed: 540
   JumpStrength: 0.04
-  BodyA: {fileID: 0}
-  BodyB: {fileID: 0}
-  BodyC: {fileID: 0}
-  FaceA: {fileID: 0}
-  FaceB: {fileID: 0}
-  FaceC: {fileID: 0}
+  BodyA: {fileID: 6656034437119778547}
+  BodyB: {fileID: 7405526299105576493}
+  BodyC: {fileID: 6530355615728816036}
+  FaceA: {fileID: 1768085170242388668}
+  FaceB: {fileID: 2240799908653627048}
+  FaceC: {fileID: 9110690400279161825}
+  MaxHP: 3
+  CurrentHP: 3
 --- !u!114 &1029054371876149300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,18 +171,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad0fe92b2d835e44b99b0bd49c78593b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2409151022462015573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4655877285482862956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f0bc34cfebf4354f8bc9c8032af9acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &637679381562812972
@@ -261,6 +250,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ba4e12196bc1ec4490919f55690235d, type: 3}
+--- !u!23 &2240799908653627048 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 8ba4e12196bc1ec4490919f55690235d, type: 3}
+  m_PrefabInstance: {fileID: 637679381562812972}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1101153997136174648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -334,6 +328,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 476650c2da67a8646912c7a48b792709, type: 3}
+--- !u!23 &1768085170242388668 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 476650c2da67a8646912c7a48b792709, type: 3}
+  m_PrefabInstance: {fileID: 1101153997136174648}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7615086725740754789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -411,6 +410,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4b4b1568a5c86d47a43da72029baf8b, type: 3}
+--- !u!23 &9110690400279161825 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: f4b4b1568a5c86d47a43da72029baf8b, type: 3}
+  m_PrefabInstance: {fileID: 7615086725740754789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8898558945675795954
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -629,6 +633,21 @@ PrefabInstance:
 --- !u!4 &2784721751989378364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6515712193588681746, guid: a7d6ae4174a183540a572c73b024f65f, type: 3}
+  m_PrefabInstance: {fileID: 8991757825313702190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &6530355615728816036 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2767848789738245770, guid: a7d6ae4174a183540a572c73b024f65f, type: 3}
+  m_PrefabInstance: {fileID: 8991757825313702190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &6656034437119778547 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2348583311668092893, guid: a7d6ae4174a183540a572c73b024f65f, type: 3}
+  m_PrefabInstance: {fileID: 8991757825313702190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &7405526299105576493 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1877036725086832387, guid: a7d6ae4174a183540a572c73b024f65f, type: 3}
   m_PrefabInstance: {fileID: 8991757825313702190}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &8882115957734303429 stripped
