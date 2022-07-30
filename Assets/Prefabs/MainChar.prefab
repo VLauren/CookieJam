@@ -208,7 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d08ece329d6a740811d616663eb4cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EffectsPrefabs: []
+  EffectsPrefabs:
+  - {fileID: 4164265562333266912, guid: eff1c91af2bd95e4b9e00145f4bcf617, type: 3}
 --- !u!1001 &637679381562812972
 PrefabInstance:
   m_ObjectHideFlags: 0

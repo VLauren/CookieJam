@@ -94,6 +94,8 @@ public class MainChar : MonoBehaviour
 
                 CJGame.AudioSource.SetIntVar("sfx", 1);
                 CJGame.AudioSource.Play("sfx");
+
+                CJVisualFX.Effect(0, transform.position, transform.rotation);
             }
             else
             {
