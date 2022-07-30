@@ -136,8 +136,7 @@ public class MainChar : MonoBehaviour
             MoveToLastSafePosition();
 
         // TODO quitar trozo de galleta
-
-        UpdateDamageRenderers();
+        //UpdateDamageRenderers();
 
         if (CurrentHP <= 0)
             Death();
