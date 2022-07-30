@@ -6,10 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    void Update()
+    void OnAnyKey(InputValue value)
     {
-        Keyboard kb = Keyboard.current;
-        if (kb.anyKey.wasPressedThisFrame)
-            CJGame.LoadFirstLevel();
+        CJGame.LoadFirstLevel();
     }
 }
