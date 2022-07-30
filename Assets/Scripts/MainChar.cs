@@ -86,37 +86,6 @@ public class MainChar : MonoBehaviour
             foreach (var cosa in FindObjectsOfType<Ilusion>())
                 cosa.ShowIlusion();
         }
-
-        // ========================================
-        // TECLAS DE DEBUG
-
-        Keyboard keyboard = Keyboard.current;
-        if (keyboard.zKey.wasPressedThisFrame)
-            ApplyDamage();
-        if(keyboard.digit1Key.wasPressedThisFrame)
-        {
-            foreach (var cosa in FindObjectsOfType<Ilusion>())
-                cosa.ShowReal();
-        }
-        if(keyboard.digit2Key.wasPressedThisFrame)
-        {
-            foreach (var cosa in FindObjectsOfType<Ilusion>())
-                cosa.ShowIlusion();
-        }
-
-        if (keyboard.rKey.wasPressedThisFrame)
-            SceneManager.LoadScene(0);
-
-        if (keyboard.tKey.wasPressedThisFrame)
-        {
-            MoveToLastSafePosition();
-        }
-        if (keyboard.yKey.wasPressedThisFrame)
-        {
-            GetComponent<CharacterController>().enabled = false;
-            transform.position = new Vector3(0, 0, 0);
-            GetComponent<CharacterController>().enabled = true;
-        }
     }
 
     void OnMove(InputValue value)
