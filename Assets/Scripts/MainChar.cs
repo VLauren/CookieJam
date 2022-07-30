@@ -11,6 +11,13 @@ public class MainChar : MonoBehaviour
     [SerializeField] float ModelRotationSpeed = 360;
     [SerializeField] float JumpStrength = 1;
 
+    [Space]
+    [SerializeField] SkinnedMeshRenderer BodyA;
+    [SerializeField] SkinnedMeshRenderer BodyB;
+    [SerializeField] SkinnedMeshRenderer BodyC;
+    [SerializeField] MeshRenderer FaceA;
+    [SerializeField] MeshRenderer FaceB;
+    [SerializeField] MeshRenderer FaceC;
     int MaxHP = 3;
     int CurrentHP = 3;
 
@@ -22,7 +29,7 @@ public class MainChar : MonoBehaviour
     float VerticalVelocity;
 
     Transform Model;
-    Renderer ModelRenderer;
+    Renderer CurrentModelRenderer;
 
     Vector3 LastSafePosition;
 
@@ -31,8 +38,8 @@ public class MainChar : MonoBehaviour
     void Start()
     {
         Model = transform.Find("Model");
-        ModelRenderer = Model.Find("Moja").GetComponent<Renderer>();
         Animator = Model.GetComponent<Animator>();
+        UpdateDamageRenderers();
     }
 
     void Update()
@@ -149,9 +156,24 @@ public class MainChar : MonoBehaviour
         if (_returnToLastSafePos)
             MoveToLastSafePosition();
 
-        // HACK TODO volver al ultimo checkpoint o algo
+        // TODO quitar trozo de galleta
+
+        UpdateDamageRenderers();
+
         if (CurrentHP <= 0)
-            SceneManager.LoadScene(0);
+            Death();
+    }
+
+    public void RestoreHP()
+    {
+        CurrentHP = 3;
+        // TODO volver a poner modelo completo
+    }
+
+    public void Death()
+    {
+        // HACK TODO volver al ultimo checkpoint o algo
+        SceneManager.LoadScene(0);
     }
 
     public void MoveToLastSafePosition()
@@ -164,17 +186,46 @@ public class MainChar : MonoBehaviour
     IEnumerator DamageBlink()
     {
         Invulnerable = true;
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 7; i++)
         {
-            //Debug.Log("blink");
-            ModelRenderer.enabled = false;
+            CurrentModelRenderer.enabled = true;
 
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.06f);
 
-            ModelRenderer.enabled = true;
+            CurrentModelRenderer.enabled = false;
 
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.06f);
         }
+        CurrentModelRenderer.enabled = true;
         Invulnerable = false;
+    }
+
+    void UpdateDamageRenderers()
+    {
+        BodyA.enabled = false;
+        BodyB.enabled = false;
+        BodyC.enabled = false;
+        FaceA.enabled = false;
+        FaceB.enabled = false;
+        FaceC.enabled = false;
+
+        if(CurrentHP == 3)
+        {
+            BodyA.enabled = true;
+            FaceA.enabled = true;
+            CurrentModelRenderer = BodyA;
+        }
+        else if(CurrentHP == 2)
+        {
+            BodyB.enabled = true;
+            FaceB.enabled = true;
+            CurrentModelRenderer = BodyB;
+        }
+        else
+        {
+            BodyC.enabled = true;
+            FaceC.enabled = true;
+            CurrentModelRenderer = BodyC;
+        }
     }
 }
