@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   Levels:
+  - Level00
   - TestScene2
   - TestScene3

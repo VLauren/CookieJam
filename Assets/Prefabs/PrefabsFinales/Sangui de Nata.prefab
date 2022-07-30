@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7244976351791888881}
   - component: {fileID: 5991063000044680788}
   - component: {fileID: 8412864049308943006}
+  - component: {fileID: 7155409224862994592}
   m_Layer: 0
   m_Name: Sangui de Nata
   m_TagString: Untagged
@@ -85,3 +86,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7155409224862994592
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8052580408738014027}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.08492046, y: 0.028946295, z: 0.014477494}
+  m_Center: {x: 0, y: 0.0013273291, z: 0}
