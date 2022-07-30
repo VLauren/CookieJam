@@ -24,11 +24,6 @@ public static class CJGame
 
     public static void NextLevel()
     {
-        // TODO rutina de next level
-        // - delay
-        // - fundido
-        // - siguiente nivel
-
         CurrentLevelIndex++;
         if (CurrentLevelIndex < GameConfig.Instance.Levels.Count)
         {

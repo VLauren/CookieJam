@@ -161,6 +161,7 @@ MonoBehaviour:
   FaceA: {fileID: 1768085170242388668}
   FaceB: {fileID: 2240799908653627048}
   FaceC: {fileID: 9110690400279161825}
+  FaceD: {fileID: 5710358295939352550}
   MaxHP: 3
   CurrentHP: 3
   CurrentCheckpoint: {fileID: 0}
@@ -415,15 +416,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d32c8f1a1460fc4cbf1e15ca4e3a0b8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.004581587
+      value: -0.005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d32c8f1a1460fc4cbf1e15ca4e3a0b8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.020846134
+      value: -0.021
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d32c8f1a1460fc4cbf1e15ca4e3a0b8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.10207574
+      value: -0.081
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d32c8f1a1460fc4cbf1e15ca4e3a0b8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -471,6 +472,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d32c8f1a1460fc4cbf1e15ca4e3a0b8, type: 3}
+--- !u!23 &5710358295939352550 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 1d32c8f1a1460fc4cbf1e15ca4e3a0b8, type: 3}
+  m_PrefabInstance: {fileID: 6412792976577731426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7615086725740754789
 PrefabInstance:
   m_ObjectHideFlags: 0

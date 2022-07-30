@@ -14,14 +14,18 @@ public class LevelEndTrigger : MonoBehaviour
 
     IEnumerator LevelEndRoutine()
     {
-        FindObjectOfType<MainChar>().VictoryAnimation();
+        MainChar.Instance.VictoryAnimation();
 
         CJGame.AudioSource.SetIntVar("musica", 2);
         CJGame.AudioSource.Play("musica");
 
-        CJGame.NextLevel();
+        yield return new WaitForSeconds(5);
 
-        yield return null;
+        FadeUI.FadeOut(1);
+
+        yield return new WaitForSeconds(1);
+
+        CJGame.NextLevel();
     }
 
     void OnDrawGizmos()

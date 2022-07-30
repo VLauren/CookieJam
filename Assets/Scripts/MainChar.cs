@@ -7,6 +7,8 @@ using KrillAudio.Krilloud;
 
 public class MainChar : MonoBehaviour
 {
+    public static MainChar Instance { get; private set; }
+
     [Header("Movement")]
     [SerializeField] float MovementSpeed = 4;
     [SerializeField] float Gravity = 20;
@@ -21,6 +23,7 @@ public class MainChar : MonoBehaviour
     [SerializeField] MeshRenderer FaceA;
     [SerializeField] MeshRenderer FaceB;
     [SerializeField] MeshRenderer FaceC;
+    [SerializeField] MeshRenderer FaceD;
 
 
     [Header("Health")]
@@ -47,8 +50,11 @@ public class MainChar : MonoBehaviour
     float IdleTime;
     bool GoingRight = true;
 
+    bool CantControl;
+
     private void Awake()
     {
+        Instance = this;
         CJGame.AudioSource = GetComponent<KLAudioSource>();
     }
 
@@ -80,14 +86,20 @@ public class MainChar : MonoBehaviour
     {
         // Movimiento
         ControlMovement = Vector3.right * MoveInput.x * Time.deltaTime * MovementSpeed;
-        GetComponent<CharacterController>().Move(ControlMovement + new Vector3(0, VerticalVelocity, 0));
+
+        if (CantControl)
+        {
+            ControlMovement = Vector3.zero;
+            MoveInput = Vector3.zero;
+        }
+
         Animator.SetFloat("Movement", Mathf.Abs(MoveInput.x));
 
         // Salto y gravedad
         if (GetComponent<CharacterController>().isGrounded)
         {
             VerticalVelocity = -0.01f;
-            if (JumpPressed)
+            if (JumpPressed && !CantControl)
             {
                 Animator.SetTrigger("Jump");
                 Animator.SetBool("Grounded", false);
@@ -109,6 +121,8 @@ public class MainChar : MonoBehaviour
         }
         else
             VerticalVelocity -= Time.deltaTime * Gravity;
+
+        GetComponent<CharacterController>().Move(ControlMovement + new Vector3(0, VerticalVelocity, 0));
 
         if (MoveInput.x == 1)
         {
@@ -192,7 +206,7 @@ public class MainChar : MonoBehaviour
         CJGame.AudioSource.SetIntVar("sfx", 6);
         CJGame.AudioSource.Play("sfx");
 
-        if (BlinkRoutine != null)
+        if (BlinkRoutine != null && !CantControl)
             StopCoroutine(BlinkRoutine);
         BlinkRoutine = StartCoroutine(DamageBlink());
 
@@ -210,18 +224,36 @@ public class MainChar : MonoBehaviour
 
     public void Death()
     {
-        // TODO Rutina de muerte
-        // - parar control
-        // - anim de muerte
-        // - fundido
-        // - restore health, move to point
+        if (!CantControl)
+            StartCoroutine(DeathRoutine());
+    }
+
+    public IEnumerator DeathRoutine()
+    {
+        CantControl = true;
+        Animator.SetTrigger("Death");
+
+        Invulnerable = true;
+
+        yield return new WaitForSeconds(5);
+
+        FadeUI.FadeOut(1);
+        
+        yield return new WaitForSeconds(1);
 
         RestoreHealth(MaxHP);
         if (!MoveToLastCheckpoint())
         {
             MoveToLastSafePosition();
         }
+
+        Invulnerable = false;
+        Animator.SetTrigger("Reset");
+        CantControl = false;
+
+        FadeUI.FadeIn(1);
     }
+
     public void SetNewCheckpoint(Transform newCheckpoint)
     {
         if (CurrentCheckpoint == newCheckpoint)
@@ -304,8 +336,13 @@ public class MainChar : MonoBehaviour
 
     public void VictoryAnimation()
     {
-        // TODO
-        // - parar control
-        // - lanzar anim de victoria
+        CantControl = true;
+
+        FaceA.enabled = false;
+        FaceB.enabled = false;
+        FaceC.enabled = false;
+        FaceD.enabled = true;
+
+        Animator.SetTrigger("Victory");
     }
 }
