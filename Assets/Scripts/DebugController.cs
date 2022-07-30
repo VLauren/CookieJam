@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class DebugController : MonoBehaviour
 {
+    MainChar character;
+
+    void Start()
+    {
+        character = gameObject.GetComponent<MainChar>();
+    }
+
     void Update()
     {
         // ========================================
@@ -14,7 +21,7 @@ public class DebugController : MonoBehaviour
         Keyboard keyboard = Keyboard.current;
         if (keyboard.zKey.wasPressedThisFrame)
         {
-            gameObject.GetComponent<MainChar>().ApplyDamage();
+            character.ApplyDamage();
         }
         if (keyboard.digit1Key.wasPressedThisFrame)
         {
@@ -32,7 +39,7 @@ public class DebugController : MonoBehaviour
 
         if (keyboard.tKey.wasPressedThisFrame)
         {
-            gameObject.GetComponent<MainChar>().MoveToLastCheckpoint();
+            character.MoveToLastCheckpoint();
         }
         if (keyboard.yKey.wasPressedThisFrame)
         {

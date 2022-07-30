@@ -39,7 +39,7 @@ public class MainChar : MonoBehaviour
     Transform Model;
     Renderer CurrentModelRenderer;
 
-    Vector3 LastSafePosition;
+    [SerializeField] Vector3 LastSafePosition;
 
     Animator Animator;
 
@@ -84,6 +84,9 @@ public class MainChar : MonoBehaviour
             {
                 Animator.SetBool("Grounded", true);
             }
+
+            if (!Invulnerable)
+                LastSafePosition = transform.position;
         }
         else
             VerticalVelocity -= Time.deltaTime * Gravity;
@@ -144,7 +147,7 @@ public class MainChar : MonoBehaviour
 
         if (_returnToLastSafePos)
         {
-            MoveToLastCheckpoint();
+            MoveToLastSafePosition();
         }
 
         // Quitar trozo de galleta
@@ -156,8 +159,11 @@ public class MainChar : MonoBehaviour
 
     public void Death()
     {
-        // HACK TODO volver al ultimo checkpoint o algo
-        SceneManager.LoadScene(0);
+        RestoreHealth(MaxHP);
+        if (!MoveToLastCheckpoint())
+        {
+            MoveToLastSafePosition();
+        }
     }
     public void SetNewCheckpoint(Transform newCheckpoint)
     {
@@ -167,26 +173,22 @@ public class MainChar : MonoBehaviour
         Debug.Log("Set new checkpoint");
     }
 
-    public void MoveToLastCheckpoint()
+    public bool MoveToLastCheckpoint()
     {
         if (CurrentCheckpoint == null)
         {
             Debug.Log("No checkpoint");
-            return;
+            return false;
         }
         GetComponent<CharacterController>().enabled = false;
         transform.position = CurrentCheckpoint.position;
         GetComponent<CharacterController>().enabled = true;
         Debug.Log("Checkpoint loaded");
+        return true;
     }
 
     public void MoveToLastSafePosition()
     {
-        if (CurrentCheckpoint == null)
-        {
-            Debug.Log("No checkpoint");
-            return;
-        }
         GetComponent<CharacterController>().enabled = false;
         transform.position = LastSafePosition;
         GetComponent<CharacterController>().enabled = true;
