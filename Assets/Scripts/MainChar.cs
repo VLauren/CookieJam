@@ -21,12 +21,14 @@ public class MainChar : MonoBehaviour
     float VerticalVelocity;
 
     Transform Model;
+    Renderer ModelRenderer;
 
     Vector3 LastSafePosition;
 
     void Start()
     {
         Model = transform.Find("Model");
+        ModelRenderer = Model.Find("Moja").GetComponent<Renderer>();
     }
 
     void Update()
@@ -54,12 +56,10 @@ public class MainChar : MonoBehaviour
         else
             VerticalVelocity -= Time.deltaTime * Gravity;
 
-        print(LastSafePosition);
-
         if (MoveInput.x == 1)
-            Model.rotation = Quaternion.RotateTowards(Model.rotation, Quaternion.Euler(90, 0, -95), Time.deltaTime * ModelRotationSpeed);
+            Model.rotation = Quaternion.RotateTowards(Model.rotation, Quaternion.Euler(0, 95, 0), Time.deltaTime * ModelRotationSpeed);
         if (MoveInput.x == -1)
-            Model.rotation = Quaternion.RotateTowards(Model.rotation, Quaternion.Euler(90, 0, 95), Time.deltaTime * ModelRotationSpeed);
+            Model.rotation = Quaternion.RotateTowards(Model.rotation, Quaternion.Euler(0, -95, 0), Time.deltaTime * ModelRotationSpeed);
 
         if(MoveInput.x == 0 && DownPressed)
         {
@@ -91,6 +91,17 @@ public class MainChar : MonoBehaviour
 
         if (keyboard.rKey.wasPressedThisFrame)
             SceneManager.LoadScene(0);
+
+        if (keyboard.tKey.wasPressedThisFrame)
+        {
+            MoveToLastSafePosition();
+        }
+        if (keyboard.yKey.wasPressedThisFrame)
+        {
+            GetComponent<CharacterController>().enabled = false;
+            transform.position = new Vector3(0, 0, 0);
+            GetComponent<CharacterController>().enabled = true;
+        }
     }
 
     void OnMove(InputValue value)
@@ -121,11 +132,18 @@ public class MainChar : MonoBehaviour
         BlinkRoutine = StartCoroutine(DamageBlink());
 
         if (_returnToLastSafePos)
-            transform.position = LastSafePosition;
+            MoveToLastSafePosition();
 
         // HACK TODO volver al ultimo checkpoint o algo
         if (CurrentHP <= 0)
             SceneManager.LoadScene(0);
+    }
+
+    public void MoveToLastSafePosition()
+    {
+        GetComponent<CharacterController>().enabled = false;
+        transform.position = LastSafePosition;
+        GetComponent<CharacterController>().enabled = true;
     }
 
     IEnumerator DamageBlink()
@@ -133,11 +151,12 @@ public class MainChar : MonoBehaviour
         Invulnerable = true;
         for (int i = 0; i < 10; i++)
         {
-            Model.gameObject.SetActive(false);
+            Debug.Log("blink");
+            ModelRenderer.enabled = false;
 
             yield return new WaitForSeconds(0.05f);
 
-            Model.gameObject.SetActive(true);
+            ModelRenderer.enabled = true;
 
             yield return new WaitForSeconds(0.05f);
         }
