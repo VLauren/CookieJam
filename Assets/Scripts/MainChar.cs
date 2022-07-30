@@ -6,20 +6,25 @@ using UnityEngine.SceneManagement;
 
 public class MainChar : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] float MovementSpeed = 4;
     [SerializeField] float Gravity = 20;
     [SerializeField] float ModelRotationSpeed = 360;
     [SerializeField] float JumpStrength = 1;
 
     [Space]
+    [Header("Body Models")]
     [SerializeField] SkinnedMeshRenderer BodyA;
     [SerializeField] SkinnedMeshRenderer BodyB;
     [SerializeField] SkinnedMeshRenderer BodyC;
     [SerializeField] MeshRenderer FaceA;
     [SerializeField] MeshRenderer FaceB;
     [SerializeField] MeshRenderer FaceC;
-    int MaxHP = 3;
-    int CurrentHP = 3;
+
+
+    [Header("Health")]
+    [SerializeField] int MaxHP = 3;
+    [SerializeField] int CurrentHP = 3;
 
     bool JumpPressed;
 
@@ -43,6 +48,11 @@ public class MainChar : MonoBehaviour
     }
 
     void Update()
+    {
+        
+    }
+
+    void Movement()
     {
         // Movimiento
         ControlMovement = Vector3.right * MoveInput.x * Time.deltaTime * MovementSpeed;
@@ -76,12 +86,12 @@ public class MainChar : MonoBehaviour
         if (MoveInput.x == -1)
             Model.rotation = Quaternion.RotateTowards(Model.rotation, Quaternion.Euler(0, -95, 0), Time.deltaTime * ModelRotationSpeed);
 
-        if(MoveInput.x == 0 && DownPressed)
+        if (MoveInput.x == 0 && DownPressed)
         {
             foreach (var cosa in FindObjectsOfType<Ilusion>())
                 cosa.ShowReal();
         }
-        if(MoveInput.x != 0)
+        if (MoveInput.x != 0)
         {
             foreach (var cosa in FindObjectsOfType<Ilusion>())
                 cosa.ShowIlusion();
@@ -116,7 +126,7 @@ public class MainChar : MonoBehaviour
         if (Invulnerable && !_ignoreInvul)
             return;
 
-        CurrentHP--;
+        CurrentHP = Mathf.Clamp(CurrentHP--, 0, MaxHP);
         Debug.Log("Mi vida ahora es: " + CurrentHP);
         if (BlinkRoutine != null)
             StopCoroutine(BlinkRoutine);
@@ -131,12 +141,6 @@ public class MainChar : MonoBehaviour
 
         if (CurrentHP <= 0)
             Death();
-    }
-
-    public void RestoreHP()
-    {
-        CurrentHP = 3;
-        // TODO volver a poner modelo completo
     }
 
     public void Death()
