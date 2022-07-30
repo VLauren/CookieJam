@@ -38,7 +38,7 @@ public class MainChar : MonoBehaviour
 
         if (GetComponent<CharacterController>().isGrounded)
         {
-            VerticalVelocity = -0.1f;
+            VerticalVelocity = -0.01f;
             if (JumpPressed)
             {
                 // Animator.SetTrigger("Jump");
@@ -51,7 +51,8 @@ public class MainChar : MonoBehaviour
                 // Animator.SetBool("Grounded", true);
             }
 
-            LastSafePosition = transform.position;
+            if (!Invulnerable)
+                LastSafePosition = transform.position;
         }
         else
             VerticalVelocity -= Time.deltaTime * Gravity;
@@ -121,9 +122,9 @@ public class MainChar : MonoBehaviour
 
     bool Invulnerable;
 
-    public void ApplyDamage(bool _returnToLastSafePos = false)
+    public void ApplyDamage(bool _returnToLastSafePos = false, bool _ignoreInvul = false)
     {
-        if (Invulnerable)
+        if (Invulnerable && !_ignoreInvul)
             return;
 
         CurrentHP--;
