@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3561371631913265999}
   - component: {fileID: 4655877285482862955}
   - component: {fileID: 1029054371876149300}
+  - component: {fileID: 191405093869406673}
   m_Layer: 0
   m_Name: MainChar
   m_TagString: Untagged
@@ -161,6 +162,8 @@ MonoBehaviour:
   FaceC: {fileID: 9110690400279161825}
   MaxHP: 3
   CurrentHP: 3
+  CurrentCheckpoint: {fileID: 0}
+  LastSafePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1029054371876149300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +176,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0fe92b2d835e44b99b0bd49c78593b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &191405093869406673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4655877285482862956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca36c690dacad5b449503bd14a590635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceShape: 0
+  sphereShapeRadius: 1
+  lineShapeStart: {x: -0, y: -0, z: -1}
+  lineShapeEnd: {x: 0, y: 0, z: 1}
+  areaShapeSize: {x: 1, y: 1, z: 1}
+  playOnAwake: 0
+  m_tags: []
 --- !u!1001 &637679381562812972
 PrefabInstance:
   m_ObjectHideFlags: 0

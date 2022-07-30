@@ -44,7 +44,7 @@ public class TransitionImage : MonoBehaviour
 
     public static void SetProgress(float _progress)
     {
-        Instance.ColorAdjust.saturation.value = Mathf.Lerp(0, Instance.MinSaturation, _progress);
+        // Instance.ColorAdjust.saturation.value = Mathf.Lerp(0, Instance.MinSaturation, _progress);
 
         float matProgress = Mathf.Clamp(_progress * 2 - 0.6f, 0, 0.6f);
         Instance.Mat.SetFloat("_Progress", matProgress);

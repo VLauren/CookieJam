@@ -39,6 +39,9 @@ public class Thwomp : MonoBehaviour
                 yield return null;
             }
 
+            CJGame.AudioSource.SetIntVar("sfx", 5);
+            CJGame.AudioSource.Play("sfx");
+
             yield return new WaitForSeconds(DownTime);
 
             while (transform.position != StartPosition)

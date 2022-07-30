@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using KrillAudio.Krilloud;
 
 public class MainChar : MonoBehaviour
 {
@@ -43,6 +44,11 @@ public class MainChar : MonoBehaviour
 
     Animator Animator;
 
+    private void Awake()
+    {
+        CJGame.AudioSource = GetComponent<KLAudioSource>();
+    }
+
     void Start()
     {
         SpawnPoint spawnPoint = FindObjectOfType<SpawnPoint>();
@@ -55,6 +61,9 @@ public class MainChar : MonoBehaviour
         Model = transform.Find("Model");
         Animator = Model.GetComponent<Animator>();
         UpdateDamageRenderers();
+
+        CJGame.AudioSource.SetIntVar("musica", 0);
+        CJGame.AudioSource.Play("musica");
     }
 
     void Update()
@@ -79,6 +88,9 @@ public class MainChar : MonoBehaviour
                 Animator.SetBool("Grounded", false);
                 VerticalVelocity = JumpStrength;
                 JumpPressed = false;
+
+                CJGame.AudioSource.SetIntVar("sfx", 1);
+                CJGame.AudioSource.Play("sfx");
             }
             else
             {
@@ -136,13 +148,25 @@ public class MainChar : MonoBehaviour
         UpdateDamageRenderers();
     }
 
-    public void ApplyDamage(bool _returnToLastSafePos = false, bool _ignoreInvul = false)
+    public void ApplyDamage(bool _returnToLastSafePos = false, bool _ignoreInvul = false, bool _spikeSound = false)
     {
         if (Invulnerable && !_ignoreInvul)
             return;
 
         CurrentHP = Mathf.Clamp(CurrentHP - 1, 0, MaxHP);
         Debug.Log("Mi vida ahora es: " + CurrentHP);
+
+        CJGame.AudioSource.SetIntVar("sfx", 3);
+        CJGame.AudioSource.Play("sfx");
+
+        // asumo que si ignore invul, es leche
+        CJGame.AudioSource.SetIntVar("sfx", 4);
+        CJGame.AudioSource.Play("sfx");
+
+        // sonido de pinchos
+        CJGame.AudioSource.SetIntVar("sfx", 6);
+        CJGame.AudioSource.Play("sfx");
+
         if (BlinkRoutine != null)
             StopCoroutine(BlinkRoutine);
         BlinkRoutine = StartCoroutine(DamageBlink());
@@ -161,6 +185,12 @@ public class MainChar : MonoBehaviour
 
     public void Death()
     {
+        // TODO Rutina de muerte
+        // - parar control
+        // - anim de muerte
+        // - fundido
+        // - restore health, move to point
+
         RestoreHealth(MaxHP);
         if (!MoveToLastCheckpoint())
         {
@@ -245,5 +275,12 @@ public class MainChar : MonoBehaviour
             FaceC.enabled = true;
             CurrentModelRenderer = BodyC;
         }
+    }
+
+    public void VictoryAnimation()
+    {
+        // TODO
+        // - parar control
+        // - lanzar anim de victoria
     }
 }

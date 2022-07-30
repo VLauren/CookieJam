@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using KrillAudio.Krilloud;
+
 
 public static class CJGame
 {
@@ -12,6 +14,8 @@ public static class CJGame
 
     public static bool Reality = false;
 
+    public static KLAudioSource AudioSource;
+
     public static void LoadFirstLevel()
     {
         CurrentLevelIndex = 0;
@@ -20,6 +24,11 @@ public static class CJGame
 
     public static void NextLevel()
     {
+        // TODO rutina de next level
+        // - delay
+        // - fundido
+        // - siguiente nivel
+
         CurrentLevelIndex++;
         if (CurrentLevelIndex < GameConfig.Instance.Levels.Count)
         {

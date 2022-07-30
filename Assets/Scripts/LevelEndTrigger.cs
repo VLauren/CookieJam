@@ -8,8 +8,20 @@ public class LevelEndTrigger : MonoBehaviour
     {
         if(other.GetComponent<MainChar>() != null)
         {
-            CJGame.NextLevel();
+            StartCoroutine(LevelEndRoutine());
         }
+    }
+
+    IEnumerator LevelEndRoutine()
+    {
+        FindObjectOfType<MainChar>().VictoryAnimation();
+
+        CJGame.AudioSource.SetIntVar("musica", 2);
+        CJGame.AudioSource.Play("musica");
+
+        CJGame.NextLevel();
+
+        yield return null;
     }
 
     void OnDrawGizmos()
