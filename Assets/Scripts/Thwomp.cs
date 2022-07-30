@@ -40,6 +40,7 @@ public class Thwomp : MonoBehaviour
 
             CJGame.AudioSource.SetIntVar("sfx", 5);
             CJGame.AudioSource.Play("sfx");
+            CJVisualFX.Effect(2, transform.position, transform.rotation);
 
             float xDist = Mathf.Abs(MainChar.Instance.transform.position.x - transform.position.x);
 
