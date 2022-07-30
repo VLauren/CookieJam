@@ -67,6 +67,8 @@ public class MainChar : MonoBehaviour
 
         CJGame.AudioSource.SetIntVar("musica", 0);
         CJGame.AudioSource.Play("musica");
+
+        FadeUI.FadeIn(1, 0);
     }
 
     void Update()
