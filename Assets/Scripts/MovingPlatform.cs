@@ -66,7 +66,7 @@ public class MovingPlatform : MonoBehaviour
 
     private void SetSurfaceArea()
     {
-        Vector3 SurfaceAreaOffset = Vector3.up * 0.2f;
+        Vector3 SurfaceAreaOffset = Vector3.up * 0.25f;
         SurfaceArea.transform.position = Platform.transform.position + SurfaceAreaOffset;
         SurfaceArea.transform.rotation = Platform.transform.rotation;
         SurfaceArea.transform.localScale = Platform.transform.localScale;
