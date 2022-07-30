@@ -25,30 +25,36 @@ public class MainChar : MonoBehaviour
 
     Vector3 LastSafePosition;
 
+    Animator Animator;
+
     void Start()
     {
         Model = transform.Find("Model");
         ModelRenderer = Model.Find("Moja").GetComponent<Renderer>();
+        Animator = Model.GetComponent<Animator>();
     }
 
     void Update()
     {
+        // Movimiento
         ControlMovement = Vector3.right * MoveInput.x * Time.deltaTime * MovementSpeed;
         GetComponent<CharacterController>().Move(ControlMovement + new Vector3(0, VerticalVelocity, 0));
+        Animator.SetFloat("Movement", Mathf.Abs(MoveInput.x));
 
+        // Salto y gravedad
         if (GetComponent<CharacterController>().isGrounded)
         {
             VerticalVelocity = -0.01f;
             if (JumpPressed)
             {
-                // Animator.SetTrigger("Jump");
-                // Animator.SetBool("Grounded", false);
+                Animator.SetTrigger("Jump");
+                Animator.SetBool("Grounded", false);
                 VerticalVelocity = JumpStrength;
                 JumpPressed = false;
             }
             else
             {
-                // Animator.SetBool("Grounded", true);
+                Animator.SetBool("Grounded", true);
             }
 
             if (!Invulnerable)
