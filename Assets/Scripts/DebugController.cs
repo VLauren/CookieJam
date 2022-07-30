@@ -19,10 +19,6 @@ public class DebugController : MonoBehaviour
         // TECLAS DE DEBUG
 
         Keyboard keyboard = Keyboard.current;
-        if (keyboard.zKey.wasPressedThisFrame)
-        {
-            character.ApplyDamage();
-        }
         if (keyboard.digit1Key.wasPressedThisFrame)
         {
             foreach (var cosa in FindObjectsOfType<Ilusion>())
