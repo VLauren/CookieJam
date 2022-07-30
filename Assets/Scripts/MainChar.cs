@@ -184,6 +184,10 @@ public class MainChar : MonoBehaviour
         transform.position = CurrentCheckpoint.position;
         GetComponent<CharacterController>().enabled = true;
         Debug.Log("Checkpoint loaded");
+
+        if (BlinkRoutine != null)
+            StopCoroutine(BlinkRoutine);
+
         return true;
     }
 

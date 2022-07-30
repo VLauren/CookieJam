@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CJGame : MonoBehaviour
+public static class CJGame
 {
-    public static CJGame Instance { get; private set; }
+    // public static CJGame Instance; { get; private set; }
 
     static int CurrentLevelIndex = 0;
 
