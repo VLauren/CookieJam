@@ -79,50 +79,7 @@ public class MainChar : MonoBehaviour
 
     void Update()
     {
-        Movement();
-    }
-
-    void Movement()
-    {
-        // Movimiento
-        ControlMovement = Vector3.right * MoveInput.x * Time.deltaTime * MovementSpeed;
-
-        if (CantControl)
-        {
-            ControlMovement = Vector3.zero;
-            MoveInput = Vector3.zero;
-        }
-
-        Animator.SetFloat("Movement", Mathf.Abs(MoveInput.x));
-
-        // Salto y gravedad
-        if (GetComponent<CharacterController>().isGrounded)
-        {
-            VerticalVelocity = -0.01f;
-            if (JumpPressed && !CantControl)
-            {
-                Animator.SetTrigger("Jump");
-                Animator.SetBool("Grounded", false);
-                VerticalVelocity = JumpStrength;
-                JumpPressed = false;
-
-                CJGame.AudioSource.SetIntVar("sfx", 1);
-                CJGame.AudioSource.Play("sfx");
-
-                CJVisualFX.Effect(0, transform.position, transform.rotation);
-            }
-            else
-            {
-                Animator.SetBool("Grounded", true);
-            }
-
-            if (!Invulnerable)
-                LastSafePosition = transform.position;
-        }
-        else
-            VerticalVelocity -= Time.deltaTime * Gravity;
-
-        GetComponent<CharacterController>().Move(ControlMovement + new Vector3(0, VerticalVelocity, 0));
+        // Movement();
 
         if (MoveInput.x == 1)
         {
@@ -163,6 +120,58 @@ public class MainChar : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        Movement();
+    }
+
+    void Movement()
+    {
+        // Movimiento
+        // ControlMovement = Vector3.right * MoveInput.x * Time.deltaTime * MovementSpeed;
+        ControlMovement = Vector3.right * MoveInput.x * Time.fixedDeltaTime * MovementSpeed;
+
+        if (CantControl)
+        {
+            ControlMovement = Vector3.zero;
+            MoveInput = Vector3.zero;
+        }
+
+        Animator.SetFloat("Movement", Mathf.Abs(MoveInput.x));
+
+        // Salto y gravedad
+        if (GetComponent<CharacterController>().isGrounded)
+        {
+            VerticalVelocity = -0.01f;
+            if (JumpPressed && !CantControl)
+            {
+                Animator.SetTrigger("Jump");
+                Animator.SetBool("Grounded", false);
+                VerticalVelocity = JumpStrength;
+                JumpPressed = false;
+
+                CJGame.AudioSource.SetIntVar("sfx", 1);
+                CJGame.AudioSource.Play("sfx");
+
+                CJVisualFX.Effect(0, transform.position, transform.rotation);
+
+                IdleTime = 0;
+            }
+            else
+            {
+                Animator.SetBool("Grounded", true);
+            }
+
+            if (!Invulnerable)
+                LastSafePosition = transform.position;
+        }
+        else
+            // VerticalVelocity -= Time.deltaTime * Gravity;
+            VerticalVelocity -= Time.fixedDeltaTime * Gravity;
+
+        GetComponent<CharacterController>().Move(ControlMovement + new Vector3(0, VerticalVelocity, 0));
+    }
+
     void OnMove(InputValue value)
     {
         Vector2 raw = value.Get<Vector2>();
@@ -173,9 +182,9 @@ public class MainChar : MonoBehaviour
 
     void OnJump(InputValue _value)
     {
-        JumpPressed = true;
+        if (GetComponent<CharacterController>().isGrounded)
+            JumpPressed = true;
     }
-
 
     Coroutine BlinkRoutine;
 

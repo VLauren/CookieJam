@@ -152,9 +152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 3.8
-  Gravity: 0.08
+  Gravity: 0.2
   ModelRotationSpeed: 540
-  JumpStrength: 0.04
+  JumpStrength: 0.1
   BodyA: {fileID: 6656034437119778547}
   BodyB: {fileID: 7405526299105576493}
   BodyC: {fileID: 6530355615728816036}
