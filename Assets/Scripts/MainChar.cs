@@ -143,7 +143,6 @@ public class MainChar : MonoBehaviour
     public void RestoreHealth(int amount)
     {
         CurrentHP = Mathf.Clamp(CurrentHP + amount, 0, MaxHP);
-        Debug.Log("Mi vida ahora es: " + CurrentHP);
 
         UpdateDamageRenderers();
     }
@@ -154,7 +153,6 @@ public class MainChar : MonoBehaviour
             return;
 
         CurrentHP = Mathf.Clamp(CurrentHP - 1, 0, MaxHP);
-        Debug.Log("Mi vida ahora es: " + CurrentHP);
 
         CJGame.AudioSource.SetIntVar("sfx", 3);
         CJGame.AudioSource.Play("sfx");

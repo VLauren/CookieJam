@@ -34,7 +34,6 @@ public class Thwomp : MonoBehaviour
         {
             while (transform.position != TargetPosition)
             {
-                Debug.Log("???");
                 transform.position = Vector3.MoveTowards(transform.position, TargetPosition, Time.deltaTime * FallSpeed);
                 yield return null;
             }
