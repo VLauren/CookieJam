@@ -273,12 +273,12 @@
             "actions": [
                 {
                     "name": "AnyKey",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "25716e95-4866-483e-8288-aa7d6a630693",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Navigate",
