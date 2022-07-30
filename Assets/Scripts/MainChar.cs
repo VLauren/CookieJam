@@ -26,6 +26,9 @@ public class MainChar : MonoBehaviour
     [SerializeField] int MaxHP = 3;
     [SerializeField] int CurrentHP = 3;
 
+    [Header("Checkpoints")]
+    [SerializeField] Transform CurrentCheckpoint;
+
     bool JumpPressed;
 
     Vector3 MoveInput;
@@ -42,6 +45,13 @@ public class MainChar : MonoBehaviour
 
     void Start()
     {
+        SpawnPoint spawnPoint = FindObjectOfType<SpawnPoint>();
+        if (spawnPoint != null)
+        {
+            SetNewCheckpoint(spawnPoint.transform);
+            MoveToLastCheckpoint();
+        }
+        
         Model = transform.Find("Model");
         Animator = Model.GetComponent<Animator>();
         UpdateDamageRenderers();
@@ -74,9 +84,6 @@ public class MainChar : MonoBehaviour
             {
                 Animator.SetBool("Grounded", true);
             }
-
-            if (!Invulnerable)
-                LastSafePosition = transform.position;
         }
         else
             VerticalVelocity -= Time.deltaTime * Gravity;
@@ -111,6 +118,7 @@ public class MainChar : MonoBehaviour
         JumpPressed = true;
     }
 
+
     Coroutine BlinkRoutine;
 
     bool Invulnerable;
@@ -135,7 +143,9 @@ public class MainChar : MonoBehaviour
         BlinkRoutine = StartCoroutine(DamageBlink());
 
         if (_returnToLastSafePos)
-            MoveToLastSafePosition();
+        {
+            MoveToLastCheckpoint();
+        }
 
         // Quitar trozo de galleta
         UpdateDamageRenderers();
@@ -149,9 +159,34 @@ public class MainChar : MonoBehaviour
         // HACK TODO volver al ultimo checkpoint o algo
         SceneManager.LoadScene(0);
     }
+    public void SetNewCheckpoint(Transform newCheckpoint)
+    {
+        if (CurrentCheckpoint == newCheckpoint)
+            return;
+        CurrentCheckpoint = newCheckpoint;
+        Debug.Log("Set new checkpoint");
+    }
+
+    public void MoveToLastCheckpoint()
+    {
+        if (CurrentCheckpoint == null)
+        {
+            Debug.Log("No checkpoint");
+            return;
+        }
+        GetComponent<CharacterController>().enabled = false;
+        transform.position = CurrentCheckpoint.position;
+        GetComponent<CharacterController>().enabled = true;
+        Debug.Log("Checkpoint loaded");
+    }
 
     public void MoveToLastSafePosition()
     {
+        if (CurrentCheckpoint == null)
+        {
+            Debug.Log("No checkpoint");
+            return;
+        }
         GetComponent<CharacterController>().enabled = false;
         transform.position = LastSafePosition;
         GetComponent<CharacterController>().enabled = true;

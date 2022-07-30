@@ -32,7 +32,7 @@ public class DebugController : MonoBehaviour
 
         if (keyboard.tKey.wasPressedThisFrame)
         {
-            gameObject.GetComponent<MainChar>().MoveToLastSafePosition();
+            gameObject.GetComponent<MainChar>().MoveToLastCheckpoint();
         }
         if (keyboard.yKey.wasPressedThisFrame)
         {
