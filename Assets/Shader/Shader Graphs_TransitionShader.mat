@@ -42,7 +42,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Progress: 0.352
+    - _Progress: 0
     m_Colors:
     - _TransitionColor: {r: 0.4401897, g: 0.6415094, b: 0.4327163, a: 0}
   m_BuildTextureStacks: []

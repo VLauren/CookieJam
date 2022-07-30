@@ -10,6 +10,8 @@ public static class CJGame
 
     static int CurrentLevelIndex = 0;
 
+    public static bool Reality = false;
+
     public static void LoadFirstLevel()
     {
         CurrentLevelIndex = 0;

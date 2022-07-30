@@ -98,13 +98,15 @@ public class MainChar : MonoBehaviour
 
         if (MoveInput.x == 0 && DownPressed)
         {
-            foreach (var cosa in FindObjectsOfType<Ilusion>())
-                cosa.ShowReal();
+            // foreach (var cosa in FindObjectsOfType<Ilusion>())
+                // cosa.ShowReal();
+            CJGame.Reality = true;
         }
         if (MoveInput.x != 0)
         {
-            foreach (var cosa in FindObjectsOfType<Ilusion>())
-                cosa.ShowIlusion();
+            // foreach (var cosa in FindObjectsOfType<Ilusion>())
+                // cosa.ShowIlusion();
+            CJGame.Reality = false;
         }
     }
 
