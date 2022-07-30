@@ -44,12 +44,12 @@ public class MainChar : MonoBehaviour
     {
         Model = transform.Find("Model");
         Animator = Model.GetComponent<Animator>();
-        UpdateDamageRenderers();
+        //UpdateDamageRenderers();
     }
 
     void Update()
     {
-        
+        Movement();
     }
 
     void Movement()
