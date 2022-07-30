@@ -141,6 +141,19 @@ public class MainChar : MonoBehaviour
         if (_returnToLastSafePos)
             MoveToLastSafePosition();
 
+        // TODO quitar trozo de galleta
+
+        Death();
+    }
+
+    public void RestoreHP()
+    {
+        CurrentHP = 3;
+        // TODO volver a poner modelo completo
+    }
+
+    public void Death()
+    {
         // HACK TODO volver al ultimo checkpoint o algo
         if (CurrentHP <= 0)
             SceneManager.LoadScene(0);
