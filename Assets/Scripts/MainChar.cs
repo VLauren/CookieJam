@@ -11,6 +11,7 @@ public class MainChar : MonoBehaviour
     [SerializeField] float ModelRotationSpeed = 360;
     [SerializeField] float JumpStrength = 1;
 
+    int MaxHP = 3;
     int CurrentHP = 3;
 
     bool JumpPressed;
@@ -128,12 +129,19 @@ public class MainChar : MonoBehaviour
 
     bool Invulnerable;
 
+    public void RestoreHealth(int amount)
+    {
+        CurrentHP = Mathf.Clamp(CurrentHP + amount, 0, MaxHP);
+        Debug.Log("Mi vida ahora es: " + CurrentHP);
+    }
+
     public void ApplyDamage(bool _returnToLastSafePos = false, bool _ignoreInvul = false)
     {
         if (Invulnerable && !_ignoreInvul)
             return;
 
         CurrentHP--;
+        Debug.Log("Mi vida ahora es: " + CurrentHP);
         if (BlinkRoutine != null)
             StopCoroutine(BlinkRoutine);
         BlinkRoutine = StartCoroutine(DamageBlink());
@@ -158,7 +166,7 @@ public class MainChar : MonoBehaviour
         Invulnerable = true;
         for (int i = 0; i < 10; i++)
         {
-            Debug.Log("blink");
+            //Debug.Log("blink");
             ModelRenderer.enabled = false;
 
             yield return new WaitForSeconds(0.05f);
