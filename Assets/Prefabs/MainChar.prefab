@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4655877285482862955}
   - component: {fileID: 1029054371876149300}
   - component: {fileID: 191405093869406673}
+  - component: {fileID: 3063280733550118165}
   m_Layer: 0
   m_Name: MainChar
   m_TagString: Untagged
@@ -195,6 +196,19 @@ MonoBehaviour:
   areaShapeSize: {x: 1, y: 1, z: 1}
   playOnAwake: 0
   m_tags: []
+--- !u!114 &3063280733550118165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4655877285482862956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d08ece329d6a740811d616663eb4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EffectsPrefabs: []
 --- !u!1001 &637679381562812972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -734,7 +748,7 @@ PrefabInstance:
     - target: {fileID: 1877036725086832387, guid: a7d6ae4174a183540a572c73b024f65f, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: dc47e6845460a62448a5e6ab66fad9ba, type: 2}
+      objectReference: {fileID: 2100000, guid: 35105fa9f44597b458e774aa5a76c049, type: 2}
     - target: {fileID: 2348583311668092893, guid: a7d6ae4174a183540a572c73b024f65f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -754,7 +768,7 @@ PrefabInstance:
     - target: {fileID: 2767848789738245770, guid: a7d6ae4174a183540a572c73b024f65f, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 081e84367874aaa4baa48cf246a41ea8, type: 2}
+      objectReference: {fileID: 2100000, guid: 35105fa9f44597b458e774aa5a76c049, type: 2}
     - target: {fileID: 4241789105015322560, guid: a7d6ae4174a183540a572c73b024f65f, type: 3}
       propertyPath: m_IsActive
       value: 1

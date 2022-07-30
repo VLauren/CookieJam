@@ -44,6 +44,9 @@ public class MainChar : MonoBehaviour
 
     Animator Animator;
 
+    float IdleTime;
+    bool GoingRight = true;
+
     private void Awake()
     {
         CJGame.AudioSource = GetComponent<KLAudioSource>();
@@ -104,9 +107,29 @@ public class MainChar : MonoBehaviour
             VerticalVelocity -= Time.deltaTime * Gravity;
 
         if (MoveInput.x == 1)
+        {
             Model.rotation = Quaternion.RotateTowards(Model.rotation, Quaternion.Euler(0, 95, 0), Time.deltaTime * ModelRotationSpeed);
-        if (MoveInput.x == -1)
+            GoingRight = true;
+            IdleTime = 0;
+        }
+        else if (MoveInput.x == -1)
+        {
             Model.rotation = Quaternion.RotateTowards(Model.rotation, Quaternion.Euler(0, -95, 0), Time.deltaTime * ModelRotationSpeed);
+            GoingRight = false;
+            IdleTime = 0;
+        }
+        else
+        {
+            if (GoingRight)
+                Model.rotation = Quaternion.RotateTowards(Model.rotation, Quaternion.Euler(0, 150, 0), Time.deltaTime * ModelRotationSpeed);
+            else
+                Model.rotation = Quaternion.RotateTowards(Model.rotation, Quaternion.Euler(0, -150, 0), Time.deltaTime * ModelRotationSpeed);
+
+            IdleTime += Time.deltaTime;
+        }
+
+        if (!DownPressed && IdleTime > 1)
+            DownPressed = true;
 
         if (MoveInput.x == 0 && DownPressed)
         {

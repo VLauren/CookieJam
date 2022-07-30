@@ -111,3 +111,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ReturnToLastSafePos: 1
+  IgnoreInvul: 1
+  PlaySpikeSound: 0
