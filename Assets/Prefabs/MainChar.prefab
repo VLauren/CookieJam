@@ -211,6 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EffectsPrefabs:
   - {fileID: 4164265562333266912, guid: eff1c91af2bd95e4b9e00145f4bcf617, type: 3}
+  - {fileID: 4164265562333266912, guid: 75126e1e637d3b14f8299b81c71a3347, type: 3}
 --- !u!1001 &637679381562812972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -806,6 +807,23 @@ SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1877036725086832387, guid: a7d6ae4174a183540a572c73b024f65f, type: 3}
   m_PrefabInstance: {fileID: 8991757825313702190}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8072787870230035583 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a7d6ae4174a183540a572c73b024f65f, type: 3}
+  m_PrefabInstance: {fileID: 8991757825313702190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5821399180089908622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8072787870230035583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220d3b898c58a894fac007fe0a0662da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8882115957734303429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a7d6ae4174a183540a572c73b024f65f, type: 3}
