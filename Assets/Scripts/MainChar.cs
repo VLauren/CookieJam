@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using KrillAudio.Krilloud;
+using Cinemachine;
 
 public class MainChar : MonoBehaviour
 {
@@ -106,18 +107,23 @@ public class MainChar : MonoBehaviour
         if (!DownPressed && IdleTime > 1)
             DownPressed = true;
 
-        if (MoveInput.x == 0 && DownPressed)
+        if (!CJGame.Reality && MoveInput.x == 0 && DownPressed && !CantControl)
         {
             // foreach (var cosa in FindObjectsOfType<Ilusion>())
-                // cosa.ShowReal();
+            // cosa.ShowReal();
             CJGame.Reality = true;
         }
         if (MoveInput.x != 0)
         {
             // foreach (var cosa in FindObjectsOfType<Ilusion>())
-                // cosa.ShowIlusion();
+            // cosa.ShowIlusion();
             CJGame.Reality = false;
         }
+    }
+
+    void LateUpdate()
+    {
+        Camera.main.transform.position += Random.onUnitSphere * 1000;
     }
 
     void FixedUpdate()
@@ -203,6 +209,8 @@ public class MainChar : MonoBehaviour
             return;
 
         CurrentHP = Mathf.Clamp(CurrentHP - 1, 0, MaxHP);
+
+        MainChar.Instance.CamShake(0.1f, 2.5f);
 
         CJGame.AudioSource.SetIntVar("sfx", 3);
         CJGame.AudioSource.Play("sfx");
@@ -353,5 +361,24 @@ public class MainChar : MonoBehaviour
         FaceD.enabled = true;
 
         Animator.SetTrigger("Victory");
+    }
+
+    Coroutine CSRoutine;
+
+    public void CamShake(float _time, float _intensity)
+    {
+        if (CSRoutine != null)
+            StopCoroutine(CSRoutine);
+        StartCoroutine(CamShakeRoutine(_time, _intensity));
+    }
+
+    IEnumerator CamShakeRoutine(float _time, float _intensity)
+    {
+        var vcn = FindObjectOfType<CinemachineVirtualCamera>().GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
+        vcn.m_AmplitudeGain = _intensity;
+
+        yield return new WaitForSeconds(_time);
+
+        vcn.m_AmplitudeGain = 0;
     }
 }

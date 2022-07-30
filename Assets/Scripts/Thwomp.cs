@@ -41,6 +41,11 @@ public class Thwomp : MonoBehaviour
             CJGame.AudioSource.SetIntVar("sfx", 5);
             CJGame.AudioSource.Play("sfx");
 
+            float xDist = Mathf.Abs(MainChar.Instance.transform.position.x - transform.position.x);
+
+            if (xDist < 8)
+                MainChar.Instance.CamShake(0.2f, 2f);
+
             yield return new WaitForSeconds(DownTime);
 
             while (transform.position != StartPosition)
