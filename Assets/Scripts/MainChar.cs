@@ -227,7 +227,7 @@ public class MainChar : MonoBehaviour
             StopCoroutine(BlinkRoutine);
         BlinkRoutine = StartCoroutine(DamageBlink());
 
-        if (_returnToLastSafePos)
+        if (_returnToLastSafePos && CurrentHP > 0)
         {
             MoveToLastSafePosition();
         }

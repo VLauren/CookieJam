@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6650825636079590997}
   - component: {fileID: 8910527874344495775}
   - component: {fileID: 729871621342218485}
+  - component: {fileID: 9060644933004273987}
   m_Layer: 0
   m_Name: Gofre
   m_TagString: Untagged
@@ -94,7 +95,21 @@ BoxCollider:
   m_GameObject: {fileID: 6964941706096184138}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.017764127, y: 0.049318675, z: 0.013270485}
   m_Center: {x: 0, y: 0.00065437146, z: 2.9757369e-16}
+--- !u!64 &9060644933004273987
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6964941706096184138}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5997045577675234180, guid: 788a1fddafc3f4249bd3d84952c4bbff, type: 3}
