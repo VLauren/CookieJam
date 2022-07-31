@@ -53,6 +53,8 @@ public class MainChar : MonoBehaviour
 
     bool CantControl;
 
+    float startZ;
+
     private void Awake()
     {
         Instance = this;
@@ -61,6 +63,8 @@ public class MainChar : MonoBehaviour
 
     void Start()
     {
+        startZ = transform.position.z;
+
         SpawnPoint spawnPoint = FindObjectOfType<SpawnPoint>();
         if (spawnPoint != null)
         {
@@ -125,6 +129,23 @@ public class MainChar : MonoBehaviour
         Keyboard kb = Keyboard.current;
         if(kb.ctrlKey.isPressed && kb.rKey.wasPressedThisFrame)
             SceneManager.LoadScene(0);
+        if(kb.ctrlKey.isPressed && kb.altKey.isPressed && kb.nKey.wasPressedThisFrame)
+            StartCoroutine(LevelEndRoutine());
+    }
+
+    IEnumerator LevelEndRoutine()
+    {
+        MainChar.Instance.VictoryAnimation();
+
+        AudioManager.Play("music_ganar", false, 0.75f);
+
+        yield return new WaitForSeconds(5);
+
+        FadeUI.FadeOut(1);
+
+        yield return new WaitForSeconds(1);
+
+        CJGame.NextLevel();
     }
 
     void LateUpdate()
@@ -183,6 +204,7 @@ public class MainChar : MonoBehaviour
             VerticalVelocity -= Time.fixedDeltaTime * Gravity;
 
         GetComponent<CharacterController>().Move(ControlMovement + new Vector3(0, VerticalVelocity, 0));
+        transform.position = new Vector3(transform.position.x, transform.position.y, startZ);
     }
 
     void OnMove(InputValue value)
