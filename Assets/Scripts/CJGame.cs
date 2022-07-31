@@ -20,6 +20,9 @@ public static class CJGame
     {
         CurrentLevelIndex = 0;
         SceneManager.LoadScene(GameConfig.Instance.Levels[0]);
+
+        AudioManager.Play("galleta_music_test2", true);
+        AudioManager.Play("galleta_music_test2_capa_extra", true, 0.001f);
     }
 
     public static void NextLevel()

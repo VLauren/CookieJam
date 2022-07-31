@@ -48,5 +48,8 @@ public class TransitionImage : MonoBehaviour
 
         float matProgress = Mathf.Clamp(_progress * 2 - 0.6f, 0, 0.6f);
         Instance.Mat.SetFloat("_Progress", matProgress);
+
+        // AudioManager.Play("galleta_music_test2_capa_extra", true, (matProgress / 0.6f) + 0.0001f);
+        AudioManager.Play("galleta_music_test2_capa_extra", true, _progress + 0.0001f);
     }
 }

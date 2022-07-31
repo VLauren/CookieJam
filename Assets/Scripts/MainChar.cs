@@ -72,10 +72,10 @@ public class MainChar : MonoBehaviour
         Animator = Model.GetComponent<Animator>();
         UpdateDamageRenderers();
 
-        CJGame.AudioSource.SetFloatVar("capa", 1);
-        CJGame.AudioSource.SetFloatVar("realidad", 0);
-        CJGame.AudioSource.SetIntVar("musica", 0);
-        CJGame.AudioSource.Play("musica");
+        // CJGame.AudioSource.SetFloatVar("capa", 1);
+        // CJGame.AudioSource.SetFloatVar("realidad", 0);
+        // CJGame.AudioSource.SetIntVar("musica", 0);
+        // CJGame.AudioSource.Play("musica");
 
         FadeUI.FadeIn(1, 0);
     }
@@ -121,6 +121,10 @@ public class MainChar : MonoBehaviour
             // cosa.ShowIlusion();
             CJGame.Reality = false;
         }
+
+        Keyboard kb = Keyboard.current;
+        if(kb.ctrlKey.isPressed && kb.rKey.wasPressedThisFrame)
+            SceneManager.LoadScene(0);
     }
 
     void LateUpdate()
@@ -158,8 +162,9 @@ public class MainChar : MonoBehaviour
                 VerticalVelocity = JumpStrength;
                 JumpPressed = false;
 
-                CJGame.AudioSource.SetIntVar("sfx", 1);
-                CJGame.AudioSource.Play("sfx");
+                // CJGame.AudioSource.SetIntVar("sfx", 1);
+                // CJGame.AudioSource.Play("sfx");
+                AudioManager.Play("Salto", false, 2);
 
                 CJVisualFX.Effect(0, transform.position + Vector3.down * 0.5f, transform.rotation);
 
@@ -214,18 +219,23 @@ public class MainChar : MonoBehaviour
 
         MainChar.Instance.CamShake(0.1f, 2.5f);
 
-        CJGame.AudioSource.SetIntVar("sfx", 3);
-        CJGame.AudioSource.Play("sfx");
+        // CJGame.AudioSource.SetIntVar("sfx", 3);
+        // CJGame.AudioSource.Play("sfx");
+        AudioManager.Play("hit", false, 0.7f);
 
         CJVisualFX.Effect(4, transform.position, transform.rotation);
 
         // asumo que si ignore invul, es leche
-        CJGame.AudioSource.SetIntVar("sfx", 4);
-        CJGame.AudioSource.Play("sfx");
+        // CJGame.AudioSource.SetIntVar("sfx", 4);
+        // CJGame.AudioSource.Play("sfx");
+        if (_ignoreInvul)
+            AudioManager.Play("splash", false, 0.7f);
 
         // sonido de pinchos
-        CJGame.AudioSource.SetIntVar("sfx", 6);
-        CJGame.AudioSource.Play("sfx");
+        // CJGame.AudioSource.SetIntVar("sfx", 6);
+        // CJGame.AudioSource.Play("sfx");
+        else
+            AudioManager.Play("Pinchos", false, 0.7f);
 
         if (BlinkRoutine != null && !CantControl)
             StopCoroutine(BlinkRoutine);
@@ -256,6 +266,8 @@ public class MainChar : MonoBehaviour
 
         Invulnerable = true;
 
+        AudioManager.Play("music_perder", false);
+
         yield return new WaitForSeconds(5);
 
         FadeUI.FadeOut(1);
@@ -281,6 +293,8 @@ public class MainChar : MonoBehaviour
             return;
         CurrentCheckpoint = newCheckpoint;
         Debug.Log("Set new checkpoint");
+
+        AudioManager.Play("checkpoint", false, 2);
     }
 
     public bool MoveToLastCheckpoint()
@@ -334,7 +348,6 @@ public class MainChar : MonoBehaviour
         FaceB.enabled = false;
         FaceC.enabled = false;
 
-        Debug.Log("Update " + CurrentHP);
         if(CurrentHP == 3)
         {
             BodyA.enabled = true;

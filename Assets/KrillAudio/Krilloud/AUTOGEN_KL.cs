@@ -7,10 +7,45 @@ namespace KrillAudio.Krilloud
 		public class Tags
 		{
 			/// <summary>
+			/// Tag: esqueletos
+			/// 2D
+			/// </summary>
+			[System.Obsolete("Cache")]
+			public const string esqueletos = "esqueletos";
+
+			/// <summary>
+			/// Tag: girl
+			/// 2D
+			/// </summary>
+			[System.Obsolete("Cache")]
+			public const string girl = "girl";
+
+			/// <summary>
+			/// Tag: lobo
+			/// 2D
+			/// </summary>
+			[System.Obsolete("Cache")]
+			public const string lobo = "lobo";
+
+			/// <summary>
 			/// Tag: musica
 			/// 2D
 			/// </summary>
 			public const string musica = "musica";
+
+			/// <summary>
+			/// Tag: pajaro
+			/// 2D
+			/// </summary>
+			[System.Obsolete("Cache")]
+			public const string pajaro = "pajaro";
+
+			/// <summary>
+			/// Tag: pasos
+			/// 2D
+			/// </summary>
+			[System.Obsolete("Cache")]
+			public const string pasos = "pasos";
 
 			/// <summary>
 			/// Tag: sfx
@@ -30,11 +65,39 @@ namespace KrillAudio.Krilloud
 			public const string capa = "capa";
 
 			/// <summary>
+			/// Variable: esqueletos
+			/// Range: [0 - 1]
+			/// Type: Local
+			/// </summary>
+			public const string esqueletos = "esqueletos";
+
+			/// <summary>
+			/// Variable: lobo
+			/// Range: [0 - 4]
+			/// Type: Local
+			/// </summary>
+			public const string lobo = "lobo";
+
+			/// <summary>
 			/// Variable: musica
 			/// Range: [0 - 2]
 			/// Type: Local
 			/// </summary>
 			public const string musica = "musica";
+
+			/// <summary>
+			/// Variable: pasos
+			/// Range: [0 - 2]
+			/// Type: Local
+			/// </summary>
+			public const string pasos = "pasos";
+
+			/// <summary>
+			/// Variable: pitch
+			/// Range: [-6 - 6]
+			/// Type: Local
+			/// </summary>
+			public const string pitch = "pitch";
 
 			/// <summary>
 			/// Variable: realidad
@@ -49,6 +112,20 @@ namespace KrillAudio.Krilloud
 			/// Type: Local
 			/// </summary>
 			public const string sfx = "sfx";
+
+			/// <summary>
+			/// Variable: volmusicadia
+			/// Range: [0 - 1]
+			/// Type: Local
+			/// </summary>
+			public const string volmusicadia = "volmusicadia";
+
+			/// <summary>
+			/// Variable: volmusicanoche
+			/// Range: [0 - 1]
+			/// Type: Local
+			/// </summary>
+			public const string volmusicanoche = "volmusicanoche";
 
 		}
 

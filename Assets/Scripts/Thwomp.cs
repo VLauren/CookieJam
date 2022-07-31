@@ -43,9 +43,13 @@ public class Thwomp : MonoBehaviour
             CJVisualFX.Effect(2, transform.position, transform.rotation);
 
             float xDist = Mathf.Abs(MainChar.Instance.transform.position.x - transform.position.x);
+            float yDist = Mathf.Abs(MainChar.Instance.transform.position.y - transform.position.y);
 
-            if (xDist < 8)
+            if (xDist < 8 && yDist < 10)
+            {
                 MainChar.Instance.CamShake(0.2f, 2f);
+                AudioManager.Play("thwomp", false, 1);
+            }
 
             yield return new WaitForSeconds(DownTime);
 
