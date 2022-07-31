@@ -217,6 +217,8 @@ public class MainChar : MonoBehaviour
         CJGame.AudioSource.SetIntVar("sfx", 3);
         CJGame.AudioSource.Play("sfx");
 
+        CJVisualFX.Effect(4, transform.position, transform.rotation);
+
         // asumo que si ignore invul, es leche
         CJGame.AudioSource.SetIntVar("sfx", 4);
         CJGame.AudioSource.Play("sfx");
