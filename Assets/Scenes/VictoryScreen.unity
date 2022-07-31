@@ -433,7 +433,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press any key...
+  m_Text: Pulsa cualquier tecla...
 --- !u!222 &508529847
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2098,7 +2098,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\xA1VICTORY!"
+  m_Text: "\xA1VICTORIA!"
 --- !u!222 &1771743880
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2178,7 +2178,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\xA1You are no more cursed!"
+  m_Text: "\xA1Ya no est\xE1s maldito!"
 --- !u!222 &1880979584
 CanvasRenderer:
   m_ObjectHideFlags: 0

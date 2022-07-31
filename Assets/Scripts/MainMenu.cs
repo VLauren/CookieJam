@@ -18,25 +18,33 @@ public class MainMenu : MonoBehaviour
     {
         storyShown = false;
         controlsShown = false;
+
+        AudioManager.Stop("galleta_music_test2");
+        AudioManager.Stop("galleta_music_test2_capa_extra");
     }
 
     void OnAnyKey(InputValue value)
     {
         if (!storyShown)
         {
-            Debug.Log("Showing the story");
+            AudioManager.Play("checkpoint", false, 1);
             ShowPanel(storyGroup);
             storyShown = true;
             return;
         }
         if (!controlsShown)
         {
-            Debug.Log("Showing the controls");
-            ShowPanel(controlsInfoGroup);
-            controlsShown = true;
+            // AudioManager.Play("checkpoint", false, 1);
+            // ShowPanel(controlsInfoGroup);
+            // controlsShown = true;
+
+            // HACK mientras no tengamos img de ctrles
+            AudioManager.Play("music_ganar", false, 0.75f);
+            CJGame.LoadFirstLevel();
+
             return;
         }
-        Debug.Log("Loading first level");
+        AudioManager.Play("music_ganar", false, 0.75f);
         CJGame.LoadFirstLevel();
     }
 

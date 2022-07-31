@@ -21,6 +21,41 @@ MonoBehaviour:
     variables: []
   cacheContract:
     tags:
+    - name: pasos
+      description: 
+      is3D: 0
+      max3DDistance: 2
+      isLoop: 0
+      channelId: 1
+      sourceContract: 2
+    - name: pajaro
+      description: 
+      is3D: 0
+      max3DDistance: 2
+      isLoop: 1
+      channelId: 2
+      sourceContract: 2
+    - name: girl
+      description: 
+      is3D: 0
+      max3DDistance: 2
+      isLoop: 0
+      channelId: 3
+      sourceContract: 2
+    - name: lobo
+      description: 
+      is3D: 0
+      max3DDistance: 2
+      isLoop: 0
+      channelId: 4
+      sourceContract: 2
+    - name: esqueletos
+      description: 
+      is3D: 0
+      max3DDistance: 2
+      isLoop: 0
+      channelId: 6
+      sourceContract: 2
     - name: sfx
       description: 
       is3D: 0
@@ -36,6 +71,54 @@ MonoBehaviour:
       channelId: 0
       sourceContract: 2
     variables:
+    - name: pasos
+      defaultValue: 2
+      isGlobal: 0
+      source: 2
+      content: 0
+      min: 0
+      max: 2
+      sourceContract: 2
+    - name: pitch
+      defaultValue: 0
+      isGlobal: 0
+      source: 2
+      content: 0
+      min: -6
+      max: 6
+      sourceContract: 2
+    - name: volmusicanoche
+      defaultValue: 0.7
+      isGlobal: 0
+      source: 2
+      content: 0
+      min: 0
+      max: 1
+      sourceContract: 2
+    - name: volmusicadia
+      defaultValue: 0
+      isGlobal: 0
+      source: 2
+      content: 0
+      min: 0
+      max: 1
+      sourceContract: 2
+    - name: esqueletos
+      defaultValue: 1
+      isGlobal: 0
+      source: 2
+      content: 0
+      min: 0
+      max: 1
+      sourceContract: 2
+    - name: lobo
+      defaultValue: 4
+      isGlobal: 0
+      source: 2
+      content: 0
+      min: 0
+      max: 4
+      sourceContract: 2
     - name: capa
       defaultValue: 1
       isGlobal: 0

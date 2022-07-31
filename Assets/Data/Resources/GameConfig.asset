@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   Levels:
+  - VictoryScreen
   - Level0
   - Level1Lauren
   - Level2Lauren
-  - VictoryScreen

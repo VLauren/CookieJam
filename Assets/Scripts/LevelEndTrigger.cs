@@ -16,8 +16,9 @@ public class LevelEndTrigger : MonoBehaviour
     {
         MainChar.Instance.VictoryAnimation();
 
-        CJGame.AudioSource.SetIntVar("musica", 2);
-        CJGame.AudioSource.Play("musica");
+        // CJGame.AudioSource.SetIntVar("musica", 2);
+        // CJGame.AudioSource.Play("musica");
+        AudioManager.Play("music_ganar", false, 0.75f);
 
         yield return new WaitForSeconds(5);
 
