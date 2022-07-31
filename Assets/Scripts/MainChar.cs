@@ -223,13 +223,15 @@ public class MainChar : MonoBehaviour
         // CJGame.AudioSource.Play("sfx");
         AudioManager.Play("hit", false, 0.7f);
 
-        CJVisualFX.Effect(4, transform.position, transform.rotation);
 
         // asumo que si ignore invul, es leche
         // CJGame.AudioSource.SetIntVar("sfx", 4);
         // CJGame.AudioSource.Play("sfx");
         if (_ignoreInvul)
+        {
             AudioManager.Play("splash", false, 0.7f);
+            CJVisualFX.Effect(5, transform.position, transform.rotation);
+        }
 
         // sonido de pinchos
         // CJGame.AudioSource.SetIntVar("sfx", 6);
@@ -245,6 +247,8 @@ public class MainChar : MonoBehaviour
         {
             MoveToLastSafePosition();
         }
+
+        CJVisualFX.Effect(4, transform.position, transform.rotation);
 
         // Quitar trozo de galleta
         UpdateDamageRenderers();
