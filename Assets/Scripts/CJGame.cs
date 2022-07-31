@@ -35,4 +35,9 @@ public static class CJGame
             SceneManager.LoadScene("MainMenu");
         }
     }
+
+    public static void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
