@@ -72,6 +72,8 @@ public class MainChar : MonoBehaviour
         Animator = Model.GetComponent<Animator>();
         UpdateDamageRenderers();
 
+        CJGame.AudioSource.SetFloatVar("capa", 1);
+        CJGame.AudioSource.SetFloatVar("realidad", 0);
         CJGame.AudioSource.SetIntVar("musica", 0);
         CJGame.AudioSource.Play("musica");
 

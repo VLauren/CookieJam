@@ -20,7 +20,53 @@ MonoBehaviour:
     tags: []
     variables: []
   cacheContract:
-    tags: []
-    variables: []
+    tags:
+    - name: sfx
+      description: 
+      is3D: 0
+      max3DDistance: 2
+      isLoop: 0
+      channelId: 0
+      sourceContract: 2
+    - name: musica
+      description: 
+      is3D: 0
+      max3DDistance: 2
+      isLoop: 0
+      channelId: 0
+      sourceContract: 2
+    variables:
+    - name: capa
+      defaultValue: 1
+      isGlobal: 0
+      source: 2
+      content: 0
+      min: 0
+      max: 1
+      sourceContract: 2
+    - name: realidad
+      defaultValue: 0
+      isGlobal: 0
+      source: 2
+      content: 0
+      min: 0
+      max: 1
+      sourceContract: 2
+    - name: musica
+      defaultValue: 2
+      isGlobal: 0
+      source: 2
+      content: 0
+      min: 0
+      max: 2
+      sourceContract: 2
+    - name: sfx
+      defaultValue: 5
+      isGlobal: 0
+      source: 2
+      content: 0
+      min: 0
+      max: 5
+      sourceContract: 2
     soundbank_files: []
     channels: []
