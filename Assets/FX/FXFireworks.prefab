@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4164265562333266925}
   - component: {fileID: 4164265562333266926}
   - component: {fileID: 4164265562333266927}
-  - component: {fileID: 2845685199498467690}
   m_Layer: 0
   m_Name: FXFireworks
   m_TagString: Untagged
@@ -4880,16 +4879,3 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &2845685199498467690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4164265562333266912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28638db7efd744b4fade02434dd91469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TimeToDestroy: 5
